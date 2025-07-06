@@ -29,14 +29,14 @@ ifeq ($(KSU_GITHUB_VERSION),)
   ifeq ($(shell test -e $(srctree)/$(src)/../.git; echo $$?),0)
     $(shell cd $(srctree)/$(src); [ -f ../.git/shallow ] && $(GIT_BIN) fetch --unshallow)
     KSU_LOCAL_VERSION := $(shell cd $(srctree)/$(src); $(GIT_BIN) rev-list --count HEAD)
-    $(eval KSU_VERSION := $(shell expr 10000 + $(KSU_LOCAL_VERSION) + 200))
+    $(eval KSU_VERSION := $(shell expr 10000 + $(KSU_LOCAL_VERSION) + 198))
     $(info -- KernelSU-Next version (local .git): $(KSU_VERSION))
   else
     $(eval KSU_VERSION := 11998)
     $(warning -- Could not fetch version online or via local .git! Using fallback version: $(KSU_VERSION))
   endif
 else
-  $(eval KSU_VERSION := $(shell expr 10000 + $(KSU_GITHUB_VERSION) + 200))
+  $(eval KSU_VERSION := $(shell expr 10000 + $(KSU_GITHUB_VERSION) + 198))
   $(info -- KernelSU-Next version (GitHub): $(KSU_VERSION))
 endif
 
